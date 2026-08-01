@@ -12,7 +12,13 @@ import pytestqt
 import cadquery as cq
 
 from PyQt5.QtCore import Qt, QSettings, QPoint, QEvent, QSize
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox, QStyle, QStyleFactory
+from PyQt5.QtWidgets import (
+    QApplication,
+    QFileDialog,
+    QMessageBox,
+    QStyle,
+    QStyleFactory,
+)
 from PyQt5.QtGui import QMouseEvent
 
 from cq_editor.__main__ import MainWindow
@@ -1709,10 +1715,9 @@ def test_launch_syntax_error(tmp_path):
     assert win.isVisible()
 
 
-def test_dock_separator_width(qtbot):
+def test_dock_separator_width(main_clean):
 
-    win = MainWindow()
-    qtbot.addWidget(win)
+    qtbot, win = main_clean
 
     # separators are widened through a style proxy, not a stylesheet: a
     # stylesheet on the main window would break palette based theming (#595)
